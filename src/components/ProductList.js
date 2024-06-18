@@ -1,5 +1,5 @@
-// src/components/ProductList.js
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const ProductList = ({ addToCart }) => {
   const [products] = useState([
@@ -40,6 +40,10 @@ const ProductList = ({ addToCart }) => {
       </ul>
     </div>
   );
+};
+
+ProductList.propTypes = {
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default ProductList;
