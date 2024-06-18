@@ -1,28 +1,30 @@
-import React from 'react';
+// src/components/HomeComponent.js
+import React, { useState } from 'react';
 import { Route, Link, useHistory } from 'react-router-dom';
-
-const HomeSubComponent = () => (
-  <div>
-    <h2>Home Sub Component</h2>
-  </div>
-);
+import ProductList from './ProductList';
+import Cart from './Cart';
 
 const HomeComponent = () => {
+  const [cart, setCart] = useState([]);
   const history = useHistory();
 
-  const navigateToProductDetails = () => {
-    history.push('/product-details');
+  const addToCart = (product) => {
+    const updatedCart = [...cart, product];
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
   return (
     <div>
       <h1>Home Page</h1>
       <p>Welcome to the Pharma App</p>
-      <button onClick={navigateToProductDetails}>Go to Product Details</button>
+      <button onClick={() => history.push('/product-details')}>Go to Product Details</button>
       <ul>
         <li><Link to="/home/sub">Home Sub Component</Link></li>
       </ul>
-      <Route path="/home/sub" component={HomeSubComponent} />
+      <Route path="/home/sub" component={() => <div><h2>Home Sub Component</h2></div>} />
+      <ProductList addToCart={addToCart} />
+      <Cart />
     </div>
   );
 };
