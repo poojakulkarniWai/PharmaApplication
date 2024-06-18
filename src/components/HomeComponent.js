@@ -19,9 +19,11 @@ const HomeComponent = () => {
     <div>
       <h1>Home Page</h1>
       <p>Welcome to the Pharma App</p>
-      <button onClick={navigateToProductDetails}>Go to Product Details</button>
-      <ul>
-        <li><Link to="/home/sub">Home Sub Component</Link></li>
+      <button className="btn btn-primary" onClick={navigateToProductDetails}>Go to Product Details</button>
+      <ul className="nav flex-column">
+        <li className="nav-item">
+          <Link className="nav-link" to="/home/sub">Home Sub Component</Link>
+        </li>
       </ul>
       <Routes>
         <Route path="sub" element={<HomeSubComponent />} />
