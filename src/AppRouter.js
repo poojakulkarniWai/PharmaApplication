@@ -1,5 +1,6 @@
+// src/AppRouter.js
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomeComponent from './components/HomeComponent';
 import ProductDetailsComponent from './components/ProductDetailsComponent';
 
@@ -12,10 +13,10 @@ const AppRouter = () => (
           <li><Link to="/product-details">Product Details</Link></li>
         </ul>
       </nav>
-      <Switch>
-        <Route exact path="/" component={HomeComponent} />
-        <Route path="/product-details" component={ProductDetailsComponent} />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<HomeComponent />} />
+        <Route path="/product-details/*" element={<ProductDetailsComponent />} />
+      </Routes>
     </div>
   </Router>
 );

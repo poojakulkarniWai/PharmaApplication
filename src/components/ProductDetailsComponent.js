@@ -1,6 +1,6 @@
 // src/components/ProductDetailsComponent.js
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 
 const ProductSubComponent = () => (
   <div>
@@ -15,7 +15,9 @@ const ProductDetailsComponent = () => (
     <ul>
       <li><Link to="/product-details/sub">Product Sub Component</Link></li>
     </ul>
-    <Route path="/product-details/sub" component={ProductSubComponent} />
+    <Routes>
+      <Route path="sub" element={<ProductSubComponent />} />
+    </Routes>
   </div>
 );
 
