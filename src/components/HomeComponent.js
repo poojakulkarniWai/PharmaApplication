@@ -1,12 +1,12 @@
 // src/components/HomeComponent.js
 import React, { useState } from 'react';
-import { Route, Link, useHistory } from 'react-router-dom';
+import { Route, Link, useNavigate } from 'react-router-dom';
 import ProductList from './ProductList';
 import Cart from './Cart';
 
 const HomeComponent = () => {
   const [cart, setCart] = useState([]);
-  const history = useHistory();
+  const navigate  = useNavigate();
 
   const addToCart = (product) => {
     const updatedCart = [...cart, product];
@@ -18,7 +18,7 @@ const HomeComponent = () => {
     <div>
       <h1>Home Page</h1>
       <p>Welcome to the Pharma App</p>
-      <button onClick={() => history.push('/product-details')}>Go to Product Details</button>
+      <button onClick={() => navigate('/product-details')}>Go to Product Details</button>
       <ul>
         <li><Link to="/home/sub">Home Sub Component</Link></li>
       </ul>
