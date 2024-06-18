@@ -3,12 +3,17 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomeComponent from './components/HomeComponent';
 import ProductDetailsComponent from './components/ProductDetailsComponent';
 import ProductList from './components/ProductList';
+import Cart from './components/Cart';
 
 const AppRouter = () => {
   const [cart, setCart] = useState([]);
 
   const addToCart = (product) => {
     setCart([...cart, product]);
+  };
+
+  const removeFromCart = (productId) => {
+    setCart(cart.filter(product => product.id !== productId));
   };
 
   return (
@@ -31,6 +36,9 @@ const AppRouter = () => {
                 <li className="nav-item">
                   <Link className="nav-link" to="/product-list">Product List</Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/cart">Cart ({cart.length})</Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -39,6 +47,7 @@ const AppRouter = () => {
           <Route path="/" element={<HomeComponent />} />
           <Route path="/product-details/*" element={<ProductDetailsComponent />} />
           <Route path="/product-list/*" element={<ProductList addToCart={addToCart} />} />
+          <Route path="/cart" element={<Cart cart={cart} removeFromCart={removeFromCart} />} />
         </Routes>
       </div>
     </Router>
