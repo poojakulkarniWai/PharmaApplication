@@ -12,7 +12,7 @@ const HomeComponent = () => {
   const navigate = useNavigate();
 
   const navigateToProductDetails = () => {
-    navigate('/product-details');
+    navigate('/product-list');
   };
 
   return (

@@ -1,7 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const ProductDetailsComponent = () => {
+const ProductDetailsComponent = ({ addToCart }) => {
   const { id } = useParams();
 
   // Replace this with actual product fetching logic
@@ -22,8 +23,15 @@ const ProductDetailsComponent = () => {
       <h2>{product.name}</h2>
       <p>Price: ${product.price}</p>
       <p>{product.description}</p>
+      <button className="btn btn-primary" onClick={() => addToCart(product)}>
+        Add to Cart
+      </button>
     </div>
   );
+};
+
+ProductDetailsComponent.propTypes = {
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default ProductDetailsComponent;

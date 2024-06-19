@@ -9,11 +9,20 @@ const AppRouter = () => {
   const [cart, setCart] = useState([]);
 
   const addToCart = (product) => {
-    setCart([...cart, product]);
+    setCart(prevCart => {
+      const existingProductIndex = prevCart.findIndex(item => item.id === product.id);
+      if (existingProductIndex !== -1) {
+        const updatedCart = [...prevCart];
+        updatedCart[existingProductIndex].quantity += 1;
+        return updatedCart;
+      } else {
+        return [...prevCart, { ...product, quantity: 1 }];
+      }
+    });
   };
 
   const removeFromCart = (productId) => {
-    setCart(cart.filter(product => product.id !== productId));
+    setCart(prevCart => prevCart.filter(product => product.id !== productId));
   };
 
   return (
@@ -31,13 +40,10 @@ const AppRouter = () => {
                   <Link className="nav-link" to="/">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/product-details">Product Details</Link>
-                </li>
-                <li className="nav-item">
                   <Link className="nav-link" to="/product-list">Product List</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/cart">Cart ({cart.length})</Link>
+                  <Link className="nav-link" to="/cart">Cart ({cart.reduce((acc, item) => acc + item.quantity, 0)})</Link>
                 </li>
               </ul>
             </div>
@@ -45,7 +51,7 @@ const AppRouter = () => {
         </nav>
         <Routes>
           <Route path="/" element={<HomeComponent />} />
-          <Route path="/product-details/:id" element={<ProductDetailsComponent />} />
+          <Route path="/product-details/:id" element={<ProductDetailsComponent addToCart={addToCart} />} />
           <Route path="/product-list" element={<ProductList addToCart={addToCart} />} />
           <Route path="/cart" element={<Cart cart={cart} removeFromCart={removeFromCart} />} />
         </Routes>

@@ -6,13 +6,12 @@ const Cart = ({ cart, removeFromCart }) => {
     <div className="container">
       <h2>Shopping Cart</h2>
       {cart.length === 0 ? (
-        <img src="/images/empty_cart.jpg" className="d-block w-100" alt="..."/>
-
+        <img src="/images/empty_cart.jpg" className="d-block w-100" alt="Empty Cart" />
       ) : (
         <ul className="list-group">
           {cart.map((item, index) => (
             <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
-              <span>{item.name} - ${item.price}</span>
+              <span>{item.name} - ${item.price} (x{item.quantity})</span>
               <button className="btn btn-danger btn-sm" onClick={() => removeFromCart(item.id)}>
                 <i className="fas fa-trash-alt"></i>
               </button>
@@ -28,7 +27,8 @@ Cart.propTypes = {
   cart: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired
+    price: PropTypes.number.isRequired,
+    quantity: PropTypes.number.isRequired
   })).isRequired,
   removeFromCart: PropTypes.func.isRequired,
 };
