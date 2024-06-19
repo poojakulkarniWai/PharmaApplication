@@ -17,9 +17,35 @@ const HomeComponent = () => {
 
   return (
     <div>
-      <h1>Home Page</h1>
-      <p>Welcome to the Pharma App</p>
-      <button className="btn btn-primary" onClick={navigateToProductDetails}>Go to Product Details</button>
+     <div className="scrolling-text-container">
+     <div className="scrolling-text-inner" style={{ '--marquee-speed': '10ss', '--direction': 'scroll-left' }} role="marquee">
+        <div className="scrolling-text">
+            <div className="scrolling-text-item">Welcome to Pharma App!</div>
+        </div>
+    </div>
+</div>
+      <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+        <div className="carousel-inner">
+            <div className="carousel-item active">
+            <img src="/images/homepageBanner1.png" className="d-block w-100" alt="..."/>
+            <button className="btn btn-primary" onClick={navigateToProductDetails}>Go to Product Details</button>
+            </div>
+            <div className="carousel-item">
+            <img src="/images/HomePageBanner1.png" className="d-block w-100" alt="..."/>
+            </div>
+            <div className="carousel-item">
+            <img src="/images/HomePageBanner2.png" className="d-block w-100" alt="..."/>
+            </div>
+        </div>
+        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Previous</span>
+        </button>
+        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Next</span>
+        </button>
+        </div>
       <ul className="nav flex-column">
         <li className="nav-item">
           <Link className="nav-link" to="/home/sub">Home Sub Component</Link>

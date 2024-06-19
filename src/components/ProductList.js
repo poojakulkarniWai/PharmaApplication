@@ -16,28 +16,40 @@ const ProductList = ({ addToCart }) => {
     .sort((a, b) => (sort === 'price-asc' ? a.price - b.price : b.price - a.price));
 
   return (
-    <div>
+    <div className="container">
       <h2>Product List</h2>
-      <div>
-        <input
-          type="text"
-          placeholder="Filter by name"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-        />
-        <select value={sort} onChange={(e) => setSort(e.target.value)}>
-          <option value="price-asc">Sort by Price: Low to High</option>
-          <option value="price-desc">Sort by Price: High to Low</option>
-        </select>
+      <div className="form-group row">
+        <div className="col-md-6">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Filter by name"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+          />
+        </div>
+        <div className="col-md-6">
+          <select className="form-control" value={sort} onChange={(e) => setSort(e.target.value)}>
+            <option value="price-asc">Sort by Price: Low to High</option>
+            <option value="price-desc">Sort by Price: High to Low</option>
+          </select>
+        </div>
       </div>
-      <ul>
+      <div className="row">
         {filteredProducts.map(product => (
-          <li key={product.id}>
-            {product.name} - ${product.price}
-            <button onClick={() => addToCart(product)}>Add to Cart</button>
-          </li>
+          <div className="col-md-4 mb-4 mt-4" key={product.id}>
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">{product.name}</h5>
+                <p className="card-text">${product.price}</p>
+                <button className="btn btn-primary" onClick={() => addToCart(product)}>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
