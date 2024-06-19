@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 const ProductList = ({ addToCart }) => {
   const [products] = useState([
-    { id: 1, name: 'Product 1', price: 50 },
-    { id: 2, name: 'Product 2', price: 30 },
-    { id: 3, name: 'Product 3', price: 70 },
+    { id: 1, name: 'Product 1', price: 50, image: '/images/Products/Product1.jfif' },
+    { id: 2, name: 'Product 2', price: 30, image: '/images/Products/Product2.jfif' },
+    { id: 3, name: 'Product 3', price: 70, image: '/images/Products/Product3.jfif' },
   ]);
 
   const [filter, setFilter] = useState('');
@@ -40,6 +40,7 @@ const ProductList = ({ addToCart }) => {
         {filteredProducts.map(product => (
           <div className="col-md-4 mb-4 mt-4" key={product.id}>
             <div className="card">
+              <img src={product.image} className="card-img-top" alt={product.name} />
               <div className="card-body">
                 <h5 className="card-title">
                   <Link to={`/product-details/${product.id}`}>
