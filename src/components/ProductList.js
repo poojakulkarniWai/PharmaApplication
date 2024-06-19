@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const ProductList = ({ addToCart }) => {
   const [products] = useState([
@@ -40,7 +41,11 @@ const ProductList = ({ addToCart }) => {
           <div className="col-md-4 mb-4 mt-4" key={product.id}>
             <div className="card">
               <div className="card-body">
-                <h5 className="card-title">{product.name}</h5>
+                <h5 className="card-title">
+                  <Link to={`/product-details/${product.id}`}>
+                    {product.name}
+                  </Link>
+                </h5>
                 <p className="card-text">${product.price}</p>
                 <button className="btn btn-primary" onClick={() => addToCart(product)}>
                   Add to Cart

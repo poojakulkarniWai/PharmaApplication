@@ -45,8 +45,8 @@ const AppRouter = () => {
         </nav>
         <Routes>
           <Route path="/" element={<HomeComponent />} />
-          <Route path="/product-details/*" element={<ProductDetailsComponent />} />
-          <Route path="/product-list/*" element={<ProductList addToCart={addToCart} />} />
+          <Route path="/product-details/:id" element={<ProductDetailsComponent />} />
+          <Route path="/product-list" element={<ProductList addToCart={addToCart} />} />
           <Route path="/cart" element={<Cart cart={cart} removeFromCart={removeFromCart} />} />
         </Routes>
       </div>
